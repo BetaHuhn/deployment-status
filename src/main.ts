@@ -13,14 +13,21 @@ type DeploymentState =
 async function run() {
   try {
     const context = github.context;
-    const defaultUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}/checks`;
+
+    const prStringInput = core.getInput("pr", {
+      required: false
+    });
+    const pr: boolean = prStringInput === "true";
+
+    const pr_id = core.getInput("pr_id", {required: false}) || 0;
+
+    const defaultUrl = pr ? `https://github.com/${context.repo.owner}/${context.repo.repo}/pull/${pr_id}/checks` : `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}/checks`;
 
     const token = core.getInput("token", { required: true });
     const url = core.getInput("target_url", { required: false }) || defaultUrl;
     const description = core.getInput("description", { required: false }) || "";
     const deploymentId = core.getInput("deployment_id");
-    const environmentUrl =
-      core.getInput("environment_url", { required: false }) || "";
+    const environmentUrl = core.getInput("environment_url", { required: false }) || "";
     const state = core.getInput("state") as DeploymentState;
 
     const client = new github.GitHub(token, { previews: ["flash", "ant-man"] });

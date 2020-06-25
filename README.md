@@ -8,6 +8,8 @@ Works great with my other action to create Deployments, [chrnorm/deployment-acti
 
 | name              | description                                                                                                                           |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `pr`             | (optional - default is `false`) If Deployment is being created from a PR |
+| `pr_id`          | (optional) Pass the PR ID to this param if `pr` is set to "true"         |
 | `state`           | The state to set the deployment to. Must be one of the below: "error" "failure" "inactive" "in_progress" "queued" "pending" "success" |
 | `token`           | GitHub token                                                                                                                          |
 | `target_url`      | (Optional) The target URL. This should be the URL of the app once deployed                                                            |
