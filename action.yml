@@ -1,4 +1,4 @@
-name: "Create Deployment Status"
+name: "Create Deployment Status Update"
 description: "Creates a GitHub Deployment status update"
 author: "altinukshini"
 branding:
