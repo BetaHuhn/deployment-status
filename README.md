@@ -2,7 +2,7 @@
 
 A GitHub action to update the status of [Deployments](https://developer.github.com/v3/repos/deployments/) as part of your GitHub CI workflows.
 
-Works great with my other action to create Deployments, [chrnorm/deployment-action](https://github.com/chrnorm/deployment-action).
+Works great with my other action to create Deployments, [altinukshini/deployment-action](https://github.com/altinukshini/deployment-action).
 
 ## Action inputs
 
@@ -19,7 +19,7 @@ Works great with my other action to create Deployments, [chrnorm/deployment-acti
 
 ## Usage example
 
-The below example includes `chrnorm/deployment-action` and `chrnorm/deployment-status` to create and update a deployment within a workflow.
+The below example includes `altinukshini/deployment-action` and `altinukshini/deployment-status` to create and update a deployment within a workflow.
 
 ```yaml
 name: Deploy
@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: chrnorm/deployment-action@releases/v1
+      - uses: altinukshini/deployment-action@releases/v1
         name: Create GitHub deployment
         id: deployment
         with:
@@ -49,7 +49,7 @@ jobs:
 
       - name: Update deployment status (success)
         if: success()
-        uses: chrnorm/deployment-status@releases/v1
+        uses: altinukshini/deployment-status@releases/v1
         with:
           token: "${{ github.token }}"
           target_url: http://my-app-url.com
@@ -58,7 +58,7 @@ jobs:
 
       - name: Update deployment status (failure)
         if: failure()
-        uses: chrnorm/deployment-status@releases/v1
+        uses: altinukshini/deployment-status@releases/v1
         with:
           token: "${{ github.token }}"
           target_url: http://my-app-url.com
